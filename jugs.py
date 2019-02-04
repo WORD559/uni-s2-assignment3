@@ -5,6 +5,8 @@ Created on Mon Jan 28 16:23:46 2019
 @author: jcb877
 """
 
+import numpy as np
+
 class Jug(object):
     def __init__(self, capacity):
         self._capacity = capacity
