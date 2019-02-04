@@ -17,22 +17,26 @@ class Jug(object):
     def _average_temp(self, volume, temperature):
         weights = self._volume*self._temperature + volume*temperature
         return weights / (self._volume + volume)
-        
+
+    def _overflow_temp(self, volume, temperature):
+        k = temperature - self._temperature
+        return temperature - k*np.exp(-volume/self._capacity)
+
     def pour_in(self, volume, temperature):
-        if self._volume == 0 and self._temperature == None:
+        if self._volume == 0 and self._temperature is None:
             self._volume = volume if volume < self._capacity else self._capacity
             self._temperature = temperature
         elif self._volume + volume <= self._capacity:
             self._temperature = self._average_temp(volume, temperature)
             self._volume += volume
         else:
-            new_volume = volume - self._capacity
-            self._temperature = self._average_temp(new_volume - volume)
+            new_volume = volume - (self._capacity - self._volume)
+            print(new_volume)
+            self._temperature = self._average_temp(volume - new_volume, temperature)
+            print(self._temperature)
             self._volume = self._capacity
-            ## TODO - Write self._overflow_temp()
-            self._temperature = self._overflow_temp(volume, temperature)
-            
-        
+            self._temperature = self._overflow_temp(new_volume, temperature)
+
     def temperature(self):
         return self._temperature
 
