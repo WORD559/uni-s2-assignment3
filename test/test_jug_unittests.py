@@ -11,7 +11,10 @@ Author:
 '''
 
 
-import unittest
+import sys
+sys.path.append("..")
+from jugs import Jug
+sys.path.pop(-1)
 
 # edit the import statement to import your Jug class
 from jugs import Jug
