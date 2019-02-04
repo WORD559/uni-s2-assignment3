@@ -12,10 +12,15 @@ class Jug(object):
         self._capacity = capacity
         self._volume = 0
         self._temperature = None
-        
+
     def pour_out(self, volume, into_jug=None):
-        pass
-    
+        volume = self._volume if volume == "all" or volume > self._volume else volume
+        if isinstance(into_jug, Jug):
+            into_jug.pour_in(volume, self._temperature)
+        self._volume -= volume
+        if self._volume == 0:
+            self._temperature = None
+
     def _average_temp(self, volume, temperature):
         weights = self._volume*self._temperature + volume*temperature
         return weights / (self._volume + volume)
