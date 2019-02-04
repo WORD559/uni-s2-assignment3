@@ -29,16 +29,14 @@ class Jug(object):
 
     capacity()
         Get the capacity of the jug
+
+    Parameters
+    ----------
+    capacity : number
+        Capacity of the jug
     """
 
     def __init__(self, capacity):
-        """Make a new jug with given capacity.
-
-        Parameters
-        ----------
-        capacity : number
-            Capacity of the jug
-        """
         self._capacity = capacity
         self._volume = 0
         self._temperature = None
