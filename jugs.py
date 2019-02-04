@@ -34,10 +34,10 @@ class Jug(object):
             
         
     def temperature(self):
-        pass
-    
+        return self._temperature
+
     def water_volume(self):
-        pass
-    
+        return self._volume
+
     def capacity(self):
-        pass
+        return self._capacity
